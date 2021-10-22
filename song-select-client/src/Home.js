@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 import SpotifyWebApi from 'spotify-web-api-node';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: 'a8dd501c1a3a4dc09eea4bbcf7d94053'
+  clientId: '{YOUR_CLIENT_ID}'
 });
 
 export default function Home({code}) {
@@ -18,7 +18,7 @@ export default function Home({code}) {
     setPlayingTrack(song);
   };
 
-  // sets an access token whenever it changes. Used for all queries
+  // Sets an access token whenever it changes.
   useEffect(() => {
     if (!accessToken) return;
     spotifyApi.setAccessToken(accessToken);
@@ -26,7 +26,7 @@ export default function Home({code}) {
 
   useEffect(() => {
     if(!accessToken) return;
-    spotifyApi.getPlaylist('58ilAf5C4v7HbblT7gmehG')
+    spotifyApi.getPlaylist('{PLAYLIST_ID}')
       .then(response  => {
         setPlaylist(
           response.body.tracks.items.map(info => {
